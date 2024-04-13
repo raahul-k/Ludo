@@ -1,0 +1,69 @@
+.turninfo {
+  width: 100%;
+  height: 100px;
+  display: grid;
+  grid-gap: 1em;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  border: 2px solid green;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.active-player {
+  grid-area: 1/1/4/3;
+  width: 100%;
+  background-color: green;
+  padding: 5%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.active-player span {
+  font-size: 10px;
+}
+
+.diceContainer {
+  grid-area: 1/3/5/5;
+}
+.diceContainer #roll-button {
+  border-radius: 5px;
+}
+.diceContainer .dice {
+  border-radius: 5px;
+}
+
+.sidebar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.reset-btn-container {
+  grid-area: 4/1/5/3;
+  width: 100%;
+}
+#reset-btn {
+  width: 100%;
+  background-color: yellow;
+  border-radius: 5px;
+}
+
+.heading {
+  color: var(--clr-currPlayer);
+  font-size: 3em;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+}
+
+.dynamicgameinfo {
+  margin-top: 20px;
+  max-width: 60ch;
+  font-size: 1em;
+  font-weight: 400;
+}
