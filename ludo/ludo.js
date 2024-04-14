@@ -56,11 +56,6 @@ export class Ludo {
     this.listenPieceClick();
 
     this.resetGame();
-    this.setPiecePosition("P1", 0, 104);
-    this.setPiecePosition("P1", 1, 105);
-    this.setPiecePosition("P1", 2, 105);
-    this.setPiecePosition("P1", 3, 105);
-    // this.setPiecePosition("P1", 0, 0);
   }
 
   listenDiceClick() {
@@ -71,7 +66,7 @@ export class Ludo {
   //in the other function, bind keyword ensures that both methods refer to the same object
 
   onDiceClick() {
-    this.diceValue = 1; // Math.floor(Math.random() * 6) + 1; //1-6 //Setting the dice value using setter function
+    this.diceValue = Math.floor(Math.random() * 6) + 1; //1-6 //Setting the dice value using setter function
     this.state = STATE.DICE_ROLLED; //Setting the state using setter function
 
     this.checkOpenPieces();
