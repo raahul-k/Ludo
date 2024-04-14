@@ -56,6 +56,11 @@ export class Ludo {
     this.listenPieceClick();
 
     this.resetGame();
+    this.setPiecePosition("P1", 0, 104);
+    this.setPiecePosition("P1", 1, 105);
+    this.setPiecePosition("P1", 2, 105);
+    this.setPiecePosition("P1", 3, 105);
+    // this.setPiecePosition("P1", 0, 0);
   }
 
   listenDiceClick() {
@@ -65,34 +70,11 @@ export class Ludo {
   //When two methods within a class require the object and one of them is a callback
   //in the other function, bind keyword ensures that both methods refer to the same object
 
-  // onDiceClick() {
-  //   this.diceValue = Math.floor(Math.random() * 6) + 1; //1-6 //Setting the dice value using setter function
-  //   this.state = STATE.DICE_ROLLED; //Setting the state using setter function
-
-  //   this.checkOpenPieces();
-  // }
-
   onDiceClick() {
-    const dice = [...document.querySelectorAll(".die-list")];
-    dice.forEach((die) => {
-      this.toggleClasses(die);
-      die.dataset.roll = this.getRandomNumber(1, 6);
-      this.diceValue = die.dataset.roll;
-      console.log(this.diceValue);
-    });
-    this.state = STATE.DICE_ROLLED;
+    this.diceValue = 1; // Math.floor(Math.random() * 6) + 1; //1-6 //Setting the dice value using setter function
+    this.state = STATE.DICE_ROLLED; //Setting the state using setter function
+
     this.checkOpenPieces();
-  }
-
-  toggleClasses(die) {
-    die.classList.toggle("odd-roll");
-    die.classList.toggle("even-roll");
-  }
-
-  getRandomNumber(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   checkOpenPieces() {
@@ -211,7 +193,9 @@ export class Ludo {
       if (diceValue <= 0) {
         clearInterval(interval);
         if (this.hasPlayerWon(player)) {
-          alert(`Player ${player} has won!`);
+          document.querySelector(
+            ".dynamicgameinfo"
+          ).innerText = `Congratulations, Player ${player} wins`;
           this.resetGame();
           return;
         }
@@ -252,6 +236,9 @@ export class Ludo {
         !SAFE_POSITIONS.includes(currentPosition)
       ) {
         kill = true;
+        document.querySelector(
+          ".dynamicgameinfo"
+        ).innerText = `${player} captured ${player === "P1" ? "P2" : "P1"}`;
         this.setPiecePosition(opponent, piece, BASE_POSITIONS[opponent][piece]);
       }
     });
